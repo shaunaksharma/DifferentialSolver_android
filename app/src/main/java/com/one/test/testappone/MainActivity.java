@@ -46,20 +46,16 @@ public class MainActivity extends AppCompatActivity {
         //first method initiated if chain. Checks if there are seperable terms, and how many.
         ArrayList<Integer> locations = new ArrayList<>();
         ArrayList<String> terms = new ArrayList<>();
-        int lel = 0;
+        int bracketCount = 0;
         int numberOfTerms = 1;
         for (int a = 0; a<input.length(); a++)
         {
-            if (input.charAt(a) == "(".charAt(0))
-            {
-                lel++;
-            }
-            if (input.charAt(a) == ")".charAt(0))
-            {
-                lel--;
-            }
+            if (input.charAt(a) == "(".charAt(0)){ bracketCount++; }
+               
+            if (input.charAt(a) == ")".charAt(0)) { bracketCount--; }
+            
             if (((input.charAt(a) == "+".charAt(0)&& input.charAt(a-1) != "^".charAt(0))
-                    || input.charAt(a) == "-".charAt(0) && input.charAt(a-1) != "^".charAt(0)) && lel==0)
+                    || input.charAt(a) == "-".charAt(0) && input.charAt(a-1) != "^".charAt(0)) && bracketCount==0)
             {
                 //System.out.println("found " + a);
                 numberOfTerms++;
@@ -70,10 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         //System.out.println("a is " + locations);
         int locationSize = locations.size();
-        if (numberOfTerms == 1)
-        {
-            terms.add(input);
-        }
+        if (numberOfTerms == 1) { terms.add(input); }
+        
         else if (numberOfTerms != 1)
         {
             for (int a = 0; a < locationSize; a++)
@@ -194,10 +188,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         answerFinal = answerFinal.trim();
-        int lel = answerFinal.length();
-        if (answerFinal.charAt(lel-1) == "+".charAt(0) || answerFinal.charAt(lel-1) == "-".charAt(0))
+        int aOne = answerFinal.length();
+        if (answerFinal.charAt(aOne-1) == "+".charAt(0) || answerFinal.charAt(aOne-1) == "-".charAt(0))
         {
-            answerFinal = answerFinal.substring(0, (lel-1));
+            answerFinal = answerFinal.substring(0, (aOne-1));
         }
         answerFinal = answerFinal.trim();
 
